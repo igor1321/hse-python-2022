@@ -1,4 +1,5 @@
 from typing import Iterable
+import random
 
 UNCULTURED_WORDS = ('kotleta', 'pirog')
 
@@ -13,6 +14,7 @@ def greet_user(name: str) -> str:
     """
 
     # пиши код здесь
+    greeting = "Hello" + name
     return greeting
 
 
@@ -29,6 +31,8 @@ def get_amount() -> float:
     """
 
     # пиши код здесь
+    amount = random.uniform(100, 1000000)
+    amount = round(amount, 2)
     return amount
 
 
@@ -43,6 +47,17 @@ def is_phone_correct(phone_number: str) -> bool:
     """
 
     # пиши код здесь
+    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    result = False
+
+    for i in range(len(phone_number)):
+        if (i == 0 and phone_number[i] != "+") or (i == 1 and phone_number[i] != "7") or len(phone_number) != 12:
+            break
+        elif phone_number[i] not in numbers and (i != 0):
+            break
+        if i == len(phone_number) - 1:
+            result = True
+
     return result
 
 
@@ -59,6 +74,7 @@ def is_amount_correct(current_amount: float, transfer_amount: str) -> bool:
     """
 
     # пиши код здесь
+    result = True if float(current_amount) >= float(transfer_amount) else False
     return result
 
 
@@ -78,7 +94,21 @@ def moderate_text(text: str, uncultured_words: Iterable[str]) -> str:
     """
 
     # пиши код здесь
-    return result
+    text = text.lower()
+    text = list(text.strip())
+
+    for i in range(len(text)):
+        if text[i] == "'" or text[i] == '"':
+            text[i] = ""
+        if i == 0:
+            text[i] = str(text[0]).upper()
+
+    text = "".join(text)
+
+    for word in uncultured_words:
+        text = text.replace(word, '#' * len(word))
+
+    return text
 
 
 def create_request_for_loan(user_info: str) -> str:
@@ -101,4 +131,6 @@ def create_request_for_loan(user_info: str) -> str:
     """
 
     # пиши код здесь
+    user_info = user_info.split(",")
+    result = f'Фамилия: {user_info[0]}\nИмя: {user_info[1]}\nОтчество: {user_info[2]}\nДата рождения: {user_info[3]}\nЗапрошенная сумма: {user_info[-1]}'
     return result
