@@ -39,5 +39,21 @@ def search_phone(content: Any, name: str) -> Optional[str]:
     """
 
     # пиши свой код здесь
+    def read_phone(element):
+        if isinstance(element, dict) and element.get('name') != None and element['name'] == name:
+            return element['phone']
 
-    return None
+        if isinstance(element, list):
+            for new_elem in element:
+                result = read_phone(new_elem)
+                if result != None:
+                    return result
+        elif isinstance(element, dict):
+            for struct in element:
+                result = read_phone(element[struct])
+                if result != None:
+                    return result
+        else:
+            return None
+
+    return read_phone(content)
