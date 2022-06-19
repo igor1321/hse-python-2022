@@ -55,7 +55,7 @@ class Team:
         # пиши свой код здесь
 
         if isinstance(member, Employee):
-            if member is self.__members:
+            if member in self.__members:
                 self.__members.remove(member)
 
             else:
