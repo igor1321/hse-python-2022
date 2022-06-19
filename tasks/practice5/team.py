@@ -59,7 +59,7 @@ class Team:
                 self.__members.remove(member)
 
             else:
-                raise  NoSuchMemberError
+                raise NoSuchMemberError(self.name, member)
 
         else:
             raise TypeError

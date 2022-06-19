@@ -39,11 +39,10 @@ class Employee:
         """
 
         # пиши свой код здесь
-        if isinstance(salary, int) and isinstance(name, str) and isinstance(position, str):
+        if isinstance(name, str) and isinstance(position, str) and isinstance(salary, int):
             self.name = name
             self.position = position
             self._salary = salary
-
         else:
             raise ValueError
 
@@ -66,13 +65,12 @@ class Employee:
         # пиши свой код здесь
         if isinstance(other, Employee):
             try:
-                return  get_position_level(self.position) == get_position_level(other.position)
-
+                return get_position_level(self.position) == get_position_level(other.position)
             except:
                 raise ValueError
 
         else:
-            raise  TypeError
+            raise TypeError
 
     def __str__(self):
         """
