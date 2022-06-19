@@ -28,7 +28,8 @@ class Team:
         """
 
         # пиши свой код здесь
-        self.name, self.manager = name, manager
+        self.name = name
+        self.manager = manager
         self.__members = set()
 
     def add_member(self, member: Employee) -> None:

@@ -40,7 +40,9 @@ class Employee:
 
         # пиши свой код здесь
         if isinstance(salary, int) and isinstance(name, str) and isinstance(position, str):
-            self.name, self.position, self._salary = name, position, salary
+            self.name = name
+            self.position = position
+            self._salary = salary
 
         else:
             raise ValueError
